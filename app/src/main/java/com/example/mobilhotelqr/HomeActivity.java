@@ -11,7 +11,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //sukru
+        //sukru deneme
 
         String mesaj = getIntent().getStringExtra("mesaj");
         Toast.makeText(this,mesaj,Toast.LENGTH_SHORT).show();
