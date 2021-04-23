@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         String mesaj = getIntent().getStringExtra("mesaj");
-        Toast.makeText(this,mesaj,Toast.LENGTH_SHORT).show();
+
 
         bottom_navigation=findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_tutucu,new fragment_first()).commit();

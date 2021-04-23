@@ -15,6 +15,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.budiyev.android.codescanner.AutoFocusMode;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
@@ -23,8 +30,11 @@ import com.budiyev.android.codescanner.ErrorCallback;
 import com.budiyev.android.codescanner.ScanMode;
 import com.google.zxing.Result;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         codeScannerView = findViewById(R.id.scanner_view);
-       // textView = findViewById(R.id.tv_textview);
         setupPermission();
         codeScanner();
 
@@ -58,20 +67,10 @@ public class MainActivity extends AppCompatActivity {
         codeScanner.setFlashEnabled(false);
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
-            public void onDecoded(@NonNull final Result result) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                       // Toast.makeText(MainActivity.this,result.getText(),Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-                        intent.putExtra("mesaj","Hoşgeldin " +result.getText());
-                        startActivity(intent);
-
-                       // textView.setText(result.getText());
-                    }
-
-                });
-
+            public void onDecoded(@NonNull Result result) {
+                Intent intent = new Intent(MainActivity.this,PrivateKeyActivity.class);
+                intent.putExtra("qr_key",result.getText());
+                startActivity(intent);
             }
         });
         codeScanner.setErrorCallback(new ErrorCallback() {
