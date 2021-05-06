@@ -57,8 +57,6 @@ public class PrivateKeyActivity extends AppCompatActivity implements  OnOtpCompl
             public void onResponse(String response) {
 
                 Intent intent = new Intent(PrivateKeyActivity.this,HomeActivity.class);
-                Log.e("denemme","denme");
-                intent.putExtra("mesaj","Hoşgeldin");
                 startActivity(intent);
             }
         }, new Response.ErrorListener() {

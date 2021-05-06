@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PrivateKeyActivity"></activity>
+        <activity android:name=".NavigationActivity"></activity>
+        <activity android:name=".PrivateKeyActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
