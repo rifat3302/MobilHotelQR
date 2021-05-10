@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -25,14 +24,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
         bottom_navigation=findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_tutucu,new fragment_first()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_tutucu,new DashboardFragment()).commit();
 
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId()==R.id.dashboard){
+                if(item.getItemId()==R.id.home){
                     Toast.makeText(getApplicationContext(), "dashboard",Toast.LENGTH_SHORT).show();
-                    tempFragment=new fragment_first();
+                    tempFragment=new DashboardFragment();
 
                 }
                 if(item.getItemId()==R.id.order){

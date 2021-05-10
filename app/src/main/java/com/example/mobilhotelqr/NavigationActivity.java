@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,7 +38,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         setSupportActionBar(toolbar);
 
 
-        fragment = new fragment_first(); //burası buttom novigationu gösterecek
+        fragment = new DashboardFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
 
@@ -78,8 +77,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         }
 
         //bottom menu
-        if(item.getItemId() == R.id.dashboard){
-            fragment = new fragment_first();
+        if(item.getItemId() == R.id.home){
+            fragment = new DashboardFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }

@@ -6,16 +6,340 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment1"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       tools:layout_editor_absoluteY="200dp">
+
+      <LinearLayout
+          android:id="@+id/Secondkatman"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp">
+
+         <LinearLayout
+             android:id="@+id/thirdkatman"
+             android:layout_width="match_parent"
+             android:layout_height="100dp"
+             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Welcome to our hotel. Burak Kaya"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:background="@drawable/home_fragment_header"/>
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:layout_marginTop="10dp"
+             >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutPoolPub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+               <LinearLayout
+                   android:id="@+id/linearLayoutPool"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="1dp"
+                   android:orientation="vertical"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toEndOf="@+id/linearLayoutPub">
+
+                  <com.github.mikephil.charting.charts.PieChart
+                      android:id="@+id/pieChartPool"
+                      android:layout_width="175dp"
+                      android:layout_height="203dp"
+                      android:background="@drawable/chart_shape"
+                      tools:ignore="MissingConstraints">
+
+
+                  </com.github.mikephil.charting.charts.PieChart>
+
+                  <LinearLayout
+                      android:layout_width="175dp"
+                      android:layout_height="match_parent"
+                      android:gravity="left"
+                      android:orientation="horizontal">
+
+                     <ImageView
+                         android:id="@+id/imageViewPub"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         app:srcCompat="@drawable/ic_baseline_people_24" />
+
+                     <TextView
+                         android:id="@+id/textViewPubCa"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="TextView" />
+
+                  </LinearLayout>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/linearLayoutPub"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/linearLayoutPool"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintHorizontal_chainStyle="spread"
+                   app:layout_constraintStart_toStartOf="parent">
+
+                  <com.github.mikephil.charting.charts.PieChart
+                      android:id="@+id/pieChartPub"
+                      android:layout_width="175dp"
+                      android:layout_height="203dp"
+                      android:background="@drawable/chart_shape"
+                      tools:ignore="MissingConstraints">
+
+
+                  </com.github.mikephil.charting.charts.PieChart>
+
+                  <LinearLayout
+                      android:layout_width="175dp"
+                      android:layout_height="match_parent"
+                      android:gravity="left"
+                      android:orientation="horizontal">
+
+                     <ImageView
+                         android:id="@+id/imageViewPool"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         app:srcCompat="@drawable/ic_baseline_people_24" />
+
+                     <TextView
+                         android:id="@+id/textViewPubCo"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="TextView" />
+
+                  </LinearLayout>
+
+               </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutSaunaRestaurant"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:id="@+id/linearLayoutSauna"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="1dp"
+                   android:orientation="vertical"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toEndOf="@+id/linearLayoutRestaurant">
+
+                  <com.github.mikephil.charting.charts.PieChart
+                      android:id="@+id/pieChartRestaurant"
+                      android:layout_width="175dp"
+                      android:layout_height="203dp"
+                      android:background="@drawable/chart_shape"
+                      tools:ignore="MissingConstraints">
+
+
+                  </com.github.mikephil.charting.charts.PieChart>
+
+                  <LinearLayout
+                      android:layout_width="175dp"
+                      android:layout_height="match_parent"
+                      android:gravity="left"
+                      android:orientation="horizontal">
+
+                     <ImageView
+                         android:id="@+id/imageViewRestaurant"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         app:srcCompat="@drawable/ic_baseline_people_24" />
+
+                     <TextView
+                         android:id="@+id/textViewRestaurant"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="TextView" />
+
+                  </LinearLayout>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/linearLayoutRestaurant"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/linearLayoutSauna"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintHorizontal_chainStyle="spread"
+                   app:layout_constraintStart_toStartOf="parent">
+
+                  <com.github.mikephil.charting.charts.PieChart
+                      android:id="@+id/pieChartSauna"
+                      android:layout_width="175dp"
+                      android:layout_height="203dp"
+                      android:background="@drawable/chart_shape"
+                      tools:ignore="MissingConstraints">
+
+
+                  </com.github.mikephil.charting.charts.PieChart>
+
+                  <LinearLayout
+                      android:layout_width="175dp"
+                      android:layout_height="match_parent"
+                      android:gravity="left"
+                      android:orientation="horizontal">
+
+                     <ImageView
+                         android:id="@+id/imageViewSauna"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         app:srcCompat="@drawable/ic_baseline_people_24" />
+
+                     <TextView
+                         android:id="@+id/textViewSauna"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="TextView" />
+
+                  </LinearLayout>
+
+               </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:id="@+id/linearLayoutGym"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="1dp"
+                   android:orientation="vertical"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toEndOf="@+id/linearLayoutOtel">
+
+                  <com.github.mikephil.charting.charts.PieChart
+                      android:id="@+id/pieChartGym"
+                      android:layout_width="175dp"
+                      android:layout_height="203dp"
+                      android:background="@drawable/chart_shape"
+                      tools:ignore="MissingConstraints">
+
+
+                  </com.github.mikephil.charting.charts.PieChart>
+
+                  <LinearLayout
+                      android:layout_width="175dp"
+                      android:layout_height="match_parent"
+                      android:gravity="left"
+                      android:orientation="horizontal">
+
+                     <ImageView
+                         android:id="@+id/imageViewGym"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         app:srcCompat="@drawable/ic_baseline_people_24" />
+
+                     <TextView
+                         android:id="@+id/textViewGym"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="TextView" />
+
+                  </LinearLayout>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/linearLayoutOtel"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/linearLayoutGym"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintHorizontal_chainStyle="spread"
+                   app:layout_constraintStart_toStartOf="parent">
+
+                  <com.github.mikephil.charting.charts.PieChart
+                      android:id="@+id/pieChartOtel"
+                      android:layout_width="175dp"
+                      android:layout_height="203dp"
+                      android:background="@drawable/chart_shape"
+                      tools:ignore="MissingConstraints">
+
+
+                  </com.github.mikephil.charting.charts.PieChart>
+
+                  <LinearLayout
+                      android:layout_width="175dp"
+                      android:layout_height="match_parent"
+                      android:gravity="left"
+                      android:orientation="horizontal">
+
+                     <ImageView
+                         android:id="@+id/imageViewOtel"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         app:srcCompat="@drawable/ic_baseline_people_24" />
+
+                     <TextView
+                         android:id="@+id/textViewOtel"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="TextView" />
+
+                  </LinearLayout>
+
+               </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+         </LinearLayout>
+      </LinearLayout>
+   </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

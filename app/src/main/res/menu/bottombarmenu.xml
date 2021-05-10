@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dashboard"
-        android:icon="@color/colorAccent"
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home_24"
         android:iconTint="#810707"
-        android:title="dashboard"
+        android:title="home"
         android:visible="true" />
     <item
         android:id="@+id/order"
