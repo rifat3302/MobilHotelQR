@@ -8,7 +8,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.mobilhotelqr.Core.ApiUtils;
+import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -16,11 +24,13 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottom_navigation;
     private Fragment tempFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         String mesaj = getIntent().getStringExtra("mesaj");
+
 
 
         bottom_navigation=findViewById(R.id.bottom_navigation);
@@ -36,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 if(item.getItemId()==R.id.order){
                     Toast.makeText(getApplicationContext(), "order",Toast.LENGTH_SHORT).show();
-                    tempFragment=new fragment_second();
+                    tempFragment=new OrderFragment();
 
                 }
                 if(item.getItemId()==R.id.tripadvisor){

@@ -7,5 +7,9 @@ public class ApiUtils {
     public static RetrofitProcess getOccupancy(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+
+    public static RetrofitProcess getAllMenu(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 

@@ -1,4 +1,4 @@
-package com.example.mobilhotelqr;
+package com.example.mobilhotelqr.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class fragment_second extends Fragment {
+import com.example.mobilhotelqr.R;
+
+public class FragmentOrderSnack extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_second_layout,container,false);
-
+        return  inflater.inflate(R.layout.fragment_order_snack,container,false);
     }
-
 }

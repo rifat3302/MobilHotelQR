@@ -9,43 +9,47 @@
    <ScrollView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
+       app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       tools:layout_editor_absoluteY="200dp">
+       app:layout_constraintTop_toTopOf="parent">
 
       <LinearLayout
           android:id="@+id/Secondkatman"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_marginTop="10dp"
           android:layout_marginLeft="10dp"
-          android:layout_marginRight="10dp">
+          android:layout_marginTop="10dp"
+          android:layout_marginRight="10dp"
+          android:orientation="vertical">
 
          <LinearLayout
              android:id="@+id/thirdkatman"
              android:layout_width="match_parent"
+             android:paddingRight="20dp"
+             android:paddingLeft="20dp"
              android:layout_height="100dp"
-             android:orientation="vertical">
+             android:orientation="vertical"
+             >
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/home_fragment_header"
+                android:gravity="center"
+
                 android:text="Welcome to our hotel. Burak Kaya"
                 android:textColor="@color/colorAccent"
-                android:textStyle="bold"
                 android:textSize="20dp"
-                android:gravity="center"
-                android:background="@drawable/home_fragment_header"/>
+                android:textStyle="bold" />
          </LinearLayout>
 
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:orientation="vertical"
              android:layout_marginTop="10dp"
-             >
+             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutPoolPub"
@@ -65,8 +69,8 @@
 
                   <com.github.mikephil.charting.charts.PieChart
                       android:id="@+id/pieChartPool"
-                      android:layout_width="175dp"
-                      android:layout_height="203dp"
+                      android:layout_width="160dp"
+                      android:layout_height="190dp"
                       android:background="@drawable/chart_shape"
                       tools:ignore="MissingConstraints">
 
@@ -74,7 +78,7 @@
                   </com.github.mikephil.charting.charts.PieChart>
 
                   <LinearLayout
-                      android:layout_width="175dp"
+                      android:layout_width="160dp"
                       android:layout_height="match_parent"
                       android:gravity="left"
                       android:orientation="horizontal">
@@ -110,8 +114,8 @@
 
                   <com.github.mikephil.charting.charts.PieChart
                       android:id="@+id/pieChartPub"
-                      android:layout_width="175dp"
-                      android:layout_height="203dp"
+                      android:layout_width="160dp"
+                      android:layout_height="190dp"
                       android:background="@drawable/chart_shape"
                       tools:ignore="MissingConstraints">
 
@@ -119,7 +123,7 @@
                   </com.github.mikephil.charting.charts.PieChart>
 
                   <LinearLayout
-                      android:layout_width="175dp"
+                      android:layout_width="160dp"
                       android:layout_height="match_parent"
                       android:gravity="left"
                       android:orientation="horizontal">
@@ -162,8 +166,8 @@
 
                   <com.github.mikephil.charting.charts.PieChart
                       android:id="@+id/pieChartRestaurant"
-                      android:layout_width="175dp"
-                      android:layout_height="203dp"
+                      android:layout_width="160dp"
+                      android:layout_height="190dp"
                       android:background="@drawable/chart_shape"
                       tools:ignore="MissingConstraints">
 
@@ -171,7 +175,7 @@
                   </com.github.mikephil.charting.charts.PieChart>
 
                   <LinearLayout
-                      android:layout_width="175dp"
+                      android:layout_width="160dp"
                       android:layout_height="match_parent"
                       android:gravity="left"
                       android:orientation="horizontal">
@@ -207,8 +211,8 @@
 
                   <com.github.mikephil.charting.charts.PieChart
                       android:id="@+id/pieChartSauna"
-                      android:layout_width="175dp"
-                      android:layout_height="203dp"
+                      android:layout_width="160dp"
+                      android:layout_height="190dp"
                       android:background="@drawable/chart_shape"
                       tools:ignore="MissingConstraints">
 
@@ -216,7 +220,7 @@
                   </com.github.mikephil.charting.charts.PieChart>
 
                   <LinearLayout
-                      android:layout_width="175dp"
+                      android:layout_width="160dp"
                       android:layout_height="match_parent"
                       android:gravity="left"
                       android:orientation="horizontal">
@@ -259,8 +263,8 @@
 
                   <com.github.mikephil.charting.charts.PieChart
                       android:id="@+id/pieChartGym"
-                      android:layout_width="175dp"
-                      android:layout_height="203dp"
+                      android:layout_width="160dp"
+                      android:layout_height="190dp"
                       android:background="@drawable/chart_shape"
                       tools:ignore="MissingConstraints">
 
@@ -268,7 +272,7 @@
                   </com.github.mikephil.charting.charts.PieChart>
 
                   <LinearLayout
-                      android:layout_width="175dp"
+                      android:layout_width="160dp"
                       android:layout_height="match_parent"
                       android:gravity="left"
                       android:orientation="horizontal">
@@ -304,8 +308,8 @@
 
                   <com.github.mikephil.charting.charts.PieChart
                       android:id="@+id/pieChartOtel"
-                      android:layout_width="175dp"
-                      android:layout_height="203dp"
+                      android:layout_width="160dp"
+                      android:layout_height="190dp"
                       android:background="@drawable/chart_shape"
                       tools:ignore="MissingConstraints">
 
@@ -313,7 +317,7 @@
                   </com.github.mikephil.charting.charts.PieChart>
 
                   <LinearLayout
-                      android:layout_width="175dp"
+                      android:layout_width="160dp"
                       android:layout_height="match_parent"
                       android:gravity="left"
                       android:orientation="horizontal">
