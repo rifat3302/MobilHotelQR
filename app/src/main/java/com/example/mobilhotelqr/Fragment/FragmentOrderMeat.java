@@ -20,7 +20,6 @@ import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.R;
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentOrderMeat extends Fragment {
@@ -46,7 +45,7 @@ public class FragmentOrderMeat extends Fragment {
 
             meatArrayList=menuData.getMeat();
 
-            rvMeat = mViev.findViewById(R.id.rvMeat);
+            rvMeat = mViev.findViewById(R.id.rvSnack);
             rvMeat.setHasFixedSize(true);
             rvMeat.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
             orderAdapterMeat = new OrderAdapterMeat(getActivity().getBaseContext(),meatArrayList);

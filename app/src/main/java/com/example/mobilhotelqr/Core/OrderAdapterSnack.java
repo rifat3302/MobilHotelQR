@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobilhotelqr.PojoModels.Menu.Meat;
+import com.example.mobilhotelqr.PojoModels.Menu.Snack;
 import com.example.mobilhotelqr.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,16 +21,17 @@ import java.util.List;
 
 import static com.example.mobilhotelqr.Constant.IMAGE_URL;
 
-public class OrderAdapterMeat extends RecyclerView.Adapter<OrderAdapterMeat.CardViewTasatimNesneleriniTutucu> {
+public class OrderAdapterSnack extends RecyclerView.Adapter<OrderAdapterSnack.CardViewTasatimNesneleriniTutucu> {
 
     private Context mContext;
+    private List<Snack> menuSnackData;
 
-    public OrderAdapterMeat(Context mContext, List<Meat> menuMeatData) {
+    public OrderAdapterSnack(Context mContext, List<Snack> menuSnackData) {
         this.mContext = mContext;
-        this.menuMeatData = menuMeatData;
+        this.menuSnackData = menuSnackData;
     }
 
-    private List<Meat> menuMeatData;
+
 
 
 
@@ -53,16 +55,16 @@ public class OrderAdapterMeat extends RecyclerView.Adapter<OrderAdapterMeat.Card
 
     @NonNull
     @Override
-    public CardViewTasatimNesneleriniTutucu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrderAdapterSnack.CardViewTasatimNesneleriniTutucu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.card_order_tasarim,parent,false);
-        return new CardViewTasatimNesneleriniTutucu(itemView);
+        return new OrderAdapterSnack.CardViewTasatimNesneleriniTutucu(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardViewTasatimNesneleriniTutucu holder, int position) {
+    public void onBindViewHolder(@NonNull OrderAdapterSnack.CardViewTasatimNesneleriniTutucu holder, int position) {
 
-        Meat menuDataSingle = menuMeatData.get(position);
+        Snack menuDataSingle = menuSnackData.get(position);
         holder.textViewOrderName.setText(menuDataSingle.getName());
         holder.textViewOrderFiyat.setText(menuDataSingle.getPrice().toString());
         Picasso.get().load(IMAGE_URL+menuDataSingle.getImageUrl()).into(holder.imageViewOrder);
@@ -78,8 +80,7 @@ public class OrderAdapterMeat extends RecyclerView.Adapter<OrderAdapterMeat.Card
 
     @Override
     public int getItemCount() {
-        return menuMeatData.size();
+        return menuSnackData.size();
 
     }
-
 }

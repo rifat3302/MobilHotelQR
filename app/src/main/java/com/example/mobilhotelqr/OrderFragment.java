@@ -52,12 +52,19 @@ public class OrderFragment extends Fragment {
 
         viewPager2.setAdapter(myViewPagerAdapter);
 
-        baslikListesi.add("Bir");
-        baslikListesi.add("Iki");
-        baslikListesi.add("Uc");
+        baslikListesi.add("");
+        baslikListesi.add("");
+        baslikListesi.add("");
 
         new TabLayoutMediator(tabLayout,viewPager2,
                 (tab,position)->tab.setText(baslikListesi.get(position))).attach();
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.barbecue);
+        tabLayout.getTabAt(1).setIcon(R.drawable.softdrink);
+         tabLayout.getTabAt(2).setIcon(R.drawable.snack);
+
+
+
 
         return mView;
 

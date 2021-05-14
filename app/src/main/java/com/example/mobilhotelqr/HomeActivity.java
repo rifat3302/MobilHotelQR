@@ -8,15 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.mobilhotelqr.Core.ApiUtils;
-import com.example.mobilhotelqr.Core.RetrofitProcess;
-import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.IOException;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class HomeActivity extends AppCompatActivity {
 

@@ -21,16 +21,14 @@
           android:layout_marginLeft="10dp"
           android:layout_marginTop="10dp"
           android:layout_marginRight="10dp"
+          android:layout_marginBottom="10dp"
           android:orientation="vertical">
 
          <LinearLayout
              android:id="@+id/thirdkatman"
              android:layout_width="match_parent"
-             android:paddingRight="20dp"
-             android:paddingLeft="20dp"
              android:layout_height="100dp"
-             android:orientation="vertical"
-             >
+             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView12"
@@ -248,7 +246,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
 
                <LinearLayout
                    android:id="@+id/linearLayoutGym"

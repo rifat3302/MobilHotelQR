@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobilhotelqr.PojoModels.Menu.Drink;
 import com.example.mobilhotelqr.PojoModels.Menu.Meat;
 import com.example.mobilhotelqr.R;
 import com.squareup.picasso.Picasso;
@@ -20,16 +21,18 @@ import java.util.List;
 
 import static com.example.mobilhotelqr.Constant.IMAGE_URL;
 
-public class OrderAdapterMeat extends RecyclerView.Adapter<OrderAdapterMeat.CardViewTasatimNesneleriniTutucu> {
+public class OrderAdapterDrink extends RecyclerView.Adapter<OrderAdapterDrink.CardViewTasatimNesneleriniTutucu> {
 
     private Context mContext;
 
-    public OrderAdapterMeat(Context mContext, List<Meat> menuMeatData) {
+    private List<Drink> menuDrinkData;
+
+    public OrderAdapterDrink(Context mContext, List<Drink> menuDrinkData) {
         this.mContext = mContext;
-        this.menuMeatData = menuMeatData;
+        this.menuDrinkData = menuDrinkData;
     }
 
-    private List<Meat> menuMeatData;
+
 
 
 
@@ -62,7 +65,7 @@ public class OrderAdapterMeat extends RecyclerView.Adapter<OrderAdapterMeat.Card
     @Override
     public void onBindViewHolder(@NonNull CardViewTasatimNesneleriniTutucu holder, int position) {
 
-        Meat menuDataSingle = menuMeatData.get(position);
+        Drink menuDataSingle = menuDrinkData.get(position);
         holder.textViewOrderName.setText(menuDataSingle.getName());
         holder.textViewOrderFiyat.setText(menuDataSingle.getPrice().toString());
         Picasso.get().load(IMAGE_URL+menuDataSingle.getImageUrl()).into(holder.imageViewOrder);
@@ -78,7 +81,7 @@ public class OrderAdapterMeat extends RecyclerView.Adapter<OrderAdapterMeat.Card
 
     @Override
     public int getItemCount() {
-        return menuMeatData.size();
+        return menuDrinkData.size();
 
     }
 

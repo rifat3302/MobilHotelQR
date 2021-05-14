@@ -8,12 +8,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,9 +27,11 @@ import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +46,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     private Fragment fragment;
     private BottomNavigationView bottomNavigationView;
     private Context mContext;
+    private ImageView imageViewSepet;
 
     private RetrofitProcess retrofitProcess;
     @Override
@@ -58,6 +65,25 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         drawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolbar);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        imageViewSepet = findViewById(R.id.imageViewSepet);
+        imageViewSepet.setImageResource(R.drawable.food_serving);
+        imageViewSepet.setOnClickListener(new View.OnClickListener() {
+
+
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View view) {
+                Snackbar snackbar = Snackbar.make(view,"Your cart is empty!",Snackbar.LENGTH_SHORT);
+                snackbar.getView().setBackgroundColor(Color.GRAY);
+
+                View sView = snackbar.getView();
+                TextView textView = sView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                textView.setTextColor(R.color.colorPrimary);
+                snackbar.show();
+
+            }
+        });
 
         toolbar.setTitle("Giriş");
         setSupportActionBar(toolbar);
