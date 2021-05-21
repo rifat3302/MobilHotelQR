@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -73,14 +74,28 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                Snackbar snackbar = Snackbar.make(view,"Your cart is empty!",Snackbar.LENGTH_SHORT);
-                snackbar.getView().setBackgroundColor(Color.GRAY);
 
-                View sView = snackbar.getView();
-                TextView textView = sView.findViewById(com.google.android.material.R.id.snackbar_text);
+                mPrefs = getBaseContext().getSharedPreferences("MobilHotelInfo",Context.MODE_PRIVATE);
+                Gson gson = new Gson();
+                String json = mPrefs.getString("Order", "");
 
-                textView.setTextColor(R.color.colorPrimary);
-                snackbar.show();
+                if(json=="" || json.contains("[]")){
+                    Snackbar snackbar = Snackbar.make(view,"Your cart is empty!",Snackbar.LENGTH_SHORT);
+                    snackbar.getView().setBackgroundColor(Color.GRAY);
+
+                    View sView = snackbar.getView();
+                    TextView textView = sView.findViewById(com.google.android.material.R.id.snackbar_text);
+
+                    textView.setTextColor(R.color.colorPrimary);
+                    snackbar.show();
+
+                }else{
+                    fragment = new FragmentLastOrder();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+
+
+                }
 
             }
         });
@@ -175,9 +190,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 prefsEditor.putString("Menu", json);
                 prefsEditor.commit();
 
-                Gson gsonn = new Gson();
-                String jsonn = mPrefs.getString("Menu", "");
-                MenuData obj = gson.fromJson(json, MenuData.class);
             }
 
             @Override

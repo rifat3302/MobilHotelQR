@@ -1,6 +1,7 @@
 package com.example.mobilhotelqr.Core;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobilhotelqr.Models.Order;
 import com.example.mobilhotelqr.PojoModels.Menu.Meat;
 import com.example.mobilhotelqr.PojoModels.Menu.Snack;
 import com.example.mobilhotelqr.R;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.mobilhotelqr.Constant.IMAGE_URL;
@@ -25,6 +29,8 @@ public class OrderAdapterSnack extends RecyclerView.Adapter<OrderAdapterSnack.Ca
 
     private Context mContext;
     private List<Snack> menuSnackData;
+
+    SharedPreferences mPrefs ;
 
     public OrderAdapterSnack(Context mContext, List<Snack> menuSnackData) {
         this.mContext = mContext;
@@ -73,9 +79,88 @@ public class OrderAdapterSnack extends RecyclerView.Adapter<OrderAdapterSnack.Ca
         holder.buttonSatınAl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                mPrefs = mContext.getSharedPreferences("MobilHotelInfo",Context.MODE_PRIVATE);
+                Gson gsonKontrolOrder = new Gson();
+                String jsonKontrolorder = mPrefs.getString("Order", "");
+                if(jsonKontrolorder==""){
+                    ArrayList<Order> orders = new ArrayList<>();
+                    Order order = new Order();
+                    order.setName(menuDataSingle.getName());
+                    order.setMenu_id(menuDataSingle.getMenuId());
+                    order.setId(menuDataSingle.getId());
+                    order.setImg_url(menuDataSingle.getImageUrl());
+                    order.setState(1);
+                    order.setTotal(menuDataSingle.getPrice());
+                    order.setPrice(menuDataSingle.getPrice());
+                    order.setCount(1);
+                    orders.add(order);
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(orders);
+                    prefsEditor.putString("Order", json);
+                    prefsEditor.commit();
+
+                }else{
+
+                    String json = mPrefs.getString("Order", "");
+                    Order orders[]  = gsonKontrolOrder.fromJson(json, Order[].class);
+                    boolean aynıSiparisMi = false;
+                    for(int i=0;i<orders.length;i++){
+                        if(orders[i].getId()==menuDataSingle.getId()){
+                            orders[i].setTotal(orders[i].getTotal()+menuDataSingle.getPrice());
+                            orders[i].setCount(orders[i].getCount()+1);
+                            aynıSiparisMi=true;
+                        }
+                    }
+                    if(!aynıSiparisMi){
+
+                        Order order = new Order();
+                        order.setName(menuDataSingle.getName());
+                        order.setMenu_id(menuDataSingle.getMenuId());
+                        order.setId(menuDataSingle.getId());
+                        order.setImg_url(menuDataSingle.getImageUrl());
+                        order.setState(1);
+                        order.setTotal(menuDataSingle.getPrice());
+                        order.setCount(1);
+                        orders = orderAdd(orders.length,orders,order);
+
+
+
+                    }
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    String jsonNew = gson.toJson(orders);
+                    prefsEditor.putString("Order", jsonNew);
+                    prefsEditor.commit();
+
+
+
+                    /*mPrefs = mContext.getSharedPreferences("MobilHotelInfo" ,  Context.MODE_PRIVATE);
+                    mPrefs.edit().remove("Order").commit();*/
+                }
+
+
+
+
+
                 Toast.makeText(mContext,menuDataSingle.getName()+" sepete  eklendi",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public static Order[] orderAdd(int n, Order arr[], Order x)
+    {
+        int i;
+
+        Order newarr[] = new Order[n + 1];
+
+        for (i = 0; i < n; i++)
+            newarr[i] = arr[i];
+
+        newarr[n] = x;
+
+        return newarr;
     }
 
     @Override

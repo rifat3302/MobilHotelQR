@@ -8,27 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
-import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DashboardFragment extends Fragment {
 
