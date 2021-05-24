@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
 import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
+import com.example.mobilhotelqr.Fragment.FragmentOrderHistory;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -138,6 +139,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
 
         if(item.getItemId() == R.id.nav_item_ucuncu){
             fragment = new FragmentUcuncu();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(item.getItemId() == R.id.nav_item_order_history){
+            fragment = new FragmentOrderHistory();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }

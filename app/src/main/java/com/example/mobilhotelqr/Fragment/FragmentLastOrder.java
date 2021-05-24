@@ -153,7 +153,7 @@ public class FragmentLastOrder  extends Fragment {
                                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
                                     alertDialog.dismiss();
                                 }
-                            },2000);
+                            },1000);
 
 
                         }

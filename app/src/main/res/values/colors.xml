@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#f57c00</color>
     <color name="backroundSepet">#FFF9F9F9</color>
+    <color name="ready">#558B2F</color>
+    <color name="ordered">#FF8F00</color>
+    <color name="reading">#9E9D24</color>
+    <color name="canceled">#C62828</color>
 </resources>

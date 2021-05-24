@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,7 +63,7 @@ public class LastOrderAdapter extends RecyclerView.Adapter<LastOrderAdapter.Card
             super(itemView);
             product_img = itemView.findViewById(R.id.imageView5);
             product_name_text = itemView.findViewById(R.id.textView27);
-            product_count = itemView.findViewById(R.id.count);
+            product_count = itemView.findViewById(R.id.countOrderHistory);
             total = itemView.findViewById(R.id.total);
             buttonUp = itemView.findViewById(R.id.button9);
             buttonDown = itemView.findViewById(R.id.button8);
