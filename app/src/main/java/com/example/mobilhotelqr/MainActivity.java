@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private CodeScannerView codeScannerView;
     private RetrofitProcess retrofitProcess;
 
-    private int camereScannerCount =  0;
     //Timer için  gerekli
     timer t = new timer(5000,1000);;
     int i=0;
