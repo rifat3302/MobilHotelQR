@@ -101,7 +101,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             }
         });
 
-        toolbar.setTitle("Giriş");
+        toolbar.setTitle("MobilHotel");
         setSupportActionBar(toolbar);
 
 

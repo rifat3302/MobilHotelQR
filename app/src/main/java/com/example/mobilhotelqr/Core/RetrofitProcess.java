@@ -30,4 +30,7 @@ public interface RetrofitProcess {
     @POST("getOrderHistory")
     @FormUrlEncoded
     Call<OrderHistory> getOrderHistory(@Field("user_id") int user_id, @Field("room_number") int room_number);
+
+    @POST("qrControl")
+    Call<ResponseData> qrControl(@Body RequestBody params);
 }

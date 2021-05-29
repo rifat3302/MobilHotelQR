@@ -19,5 +19,9 @@ public class ApiUtils {
     public static RetrofitProcess getOrderHistory(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+
+    public static RetrofitProcess qrControl(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 

@@ -37,7 +37,7 @@
                 android:background="@drawable/home_fragment_header"
                 android:gravity="center"
 
-                android:text="Welcome to our hotel. Burak Kaya"
+                android:text="Welcome to our hotel. Şükrü Hasta"
                 android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 android:textStyle="bold" />

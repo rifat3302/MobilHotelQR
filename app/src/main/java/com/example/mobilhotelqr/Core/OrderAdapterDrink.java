@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobilhotelqr.Models.Order;
 import com.example.mobilhotelqr.PojoModels.Menu.Drink;
-import com.example.mobilhotelqr.PojoModels.Menu.Meat;
 import com.example.mobilhotelqr.R;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;

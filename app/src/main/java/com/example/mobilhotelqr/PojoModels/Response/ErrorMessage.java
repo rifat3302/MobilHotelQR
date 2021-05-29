@@ -1,14 +1,17 @@
-
 package com.example.mobilhotelqr.PojoModels.Response;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class ErrorMessage {
 
-public class ResponseData {
-
-    @SerializedName("message")
-    @Expose
+    private int code;
     private String message;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public String getMessage() {
         return message;
@@ -17,7 +20,4 @@ public class ResponseData {
     public void setMessage(String message) {
         this.message = message;
     }
-
-
-
 }
