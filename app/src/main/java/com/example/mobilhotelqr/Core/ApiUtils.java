@@ -23,5 +23,9 @@ public class ApiUtils {
     public static RetrofitProcess qrControl(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+
+    public static RetrofitProcess loginAfterPrivateKey(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 

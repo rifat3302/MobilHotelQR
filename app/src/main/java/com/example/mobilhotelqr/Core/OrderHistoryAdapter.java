@@ -2,13 +2,7 @@ package com.example.mobilhotelqr.Core;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mobilhotelqr.Models.Order;
-import com.example.mobilhotelqr.PojoModels.OrderHistory.OrderDetail;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.OrderHistory;
 import com.example.mobilhotelqr.R;
-
-import java.util.List;
 
 import retrofit2.Response;
 

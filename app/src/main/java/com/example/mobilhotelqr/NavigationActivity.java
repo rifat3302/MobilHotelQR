@@ -25,22 +25,23 @@ import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
 import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
 import com.example.mobilhotelqr.Fragment.FragmentOrderHistory;
+import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
+import com.example.mobilhotelqr.Services.LogoutService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,BottomNavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences mPrefs ;
+
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -49,13 +50,22 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     private BottomNavigationView bottomNavigationView;
     private Context mContext;
     private ImageView imageViewSepet;
+    private TextView kisiAdinNavigation;
 
+    SharedPreferences mPrefs ;
     private RetrofitProcess retrofitProcess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         mPrefs = getSharedPreferences("MobilHotelInfo",MODE_PRIVATE);
+
+        /**
+         * Logout bu navigation activity  çalıştığı  sürece kontrol ediliyor.
+         */
+        startService(new Intent(NavigationActivity.this, LogoutService.class));
+
+
         try {
             getAllMenu();
             getAllOccupancy();
@@ -115,7 +125,16 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         drawerLayout.addDrawerListener(toogle);
         toogle.syncState();
 
+
+        Gson gson = new Gson();
+        mPrefs = getSharedPreferences("MobilHotelInfo",Context.MODE_PRIVATE);
+        String json = mPrefs.getString("User", "");
+        LoginUserAfter user = gson.fromJson(json,LoginUserAfter.class);
+
         View baslik = navigationView.inflateHeaderView(R.layout.navigation_baslik);
+        kisiAdinNavigation = baslik.findViewById(R.id.textView11);
+        kisiAdinNavigation.setText(user.getData().getUser().getName()+" "+user.getData().getUser().getSurname());
+
 
         navigationView.setNavigationItemSelectedListener(this);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -232,4 +251,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(NavigationActivity.this, LogoutService.class));
+    }
 }

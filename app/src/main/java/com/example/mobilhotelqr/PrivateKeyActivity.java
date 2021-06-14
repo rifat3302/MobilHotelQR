@@ -1,29 +1,32 @@
 package com.example.mobilhotelqr;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import android.os.Handler;
+import com.example.mobilhotelqr.Core.ApiUtils;
+import com.example.mobilhotelqr.Core.LoadingDialog;
+import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
+import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
+import com.google.gson.Gson;
 import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PrivateKeyActivity extends AppCompatActivity implements  OnOtpCompletionListener {
     private OtpView otpView;
     private String qr_key;
+    private RetrofitProcess retrofitProcess;
+    SharedPreferences mPrefs ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,50 +55,60 @@ public class PrivateKeyActivity extends AppCompatActivity implements  OnOtpCompl
 
     public void login (final String otp){
 
-        StringRequest istek = new StringRequest(Request.Method.POST, Constant.API_URL + "MHlogin", new Response.Listener<String>() {
+        retrofitProcess = ApiUtils.loginAfterPrivateKey();
+        retrofitProcess.loginAfterPrivateKey(qr_key,otp).enqueue(new Callback<LoginUserAfter>() {
+            @SuppressLint("ResourceAsColor")
             @Override
-            public void onResponse(String response) {
-
-                Intent intent = new Intent(PrivateKeyActivity.this,HomeActivity.class);
-                startActivity(intent);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse errorRes = error.networkResponse;
-                String stringData = "";
-                if(errorRes != null && errorRes.data != null){
-                    try {
-                        stringData = new String(errorRes.data,"UTF-8");
-
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+            public void onResponse(Call<LoginUserAfter> call, Response<LoginUserAfter> response) {
+                if(response.body().getData()==null){
+                    LoadingDialog loadingDialog = new LoadingDialog(PrivateKeyActivity.this);
+                    loadingDialog.privateNoSuccess(response.body().getMessage());
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                                loadingDialog.dismissDialog();
+                        }
+                    },3000);
                 }
-                Toast.makeText(PrivateKeyActivity.this,"Geçersiz kullanıcı adı veya şifre",Toast.LENGTH_SHORT).show();
+                if(response.body().getData()!=null){
+                    
+                    mPrefs = getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
+                    LoginUserAfter mData = response.body();
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(mData);
+                    prefsEditor.putString("User", json);
+                    prefsEditor.commit();
+                    Intent  intent = new Intent(PrivateKeyActivity.this,NavigationActivity.class);
+                    startActivity(intent);
+                }else{
+                    LoadingDialog loadingDialog = new LoadingDialog(PrivateKeyActivity.this);
+                    loadingDialog.privateNoSuccess("LoginUser fetching error data");
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingDialog.dismissDialog();
+                        }
+                    },3000);
+                }
+
             }
 
-        }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String,String> params = new HashMap<>();
-                params.put("qr_key",qr_key);
-                params.put("private_key",otp);
-                return params;
+            public void onFailure(Call<LoginUserAfter> call, Throwable t) {
+                LoadingDialog loadingDialog = new LoadingDialog(PrivateKeyActivity.this);
+                loadingDialog.privateNoSuccess("LoginUser fetching error data (problem is network)");
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingDialog.dismissDialog();
+                    }
+                },3000);
             }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/x-www-form-urlencoded");
-                headers.put("Accept", "application/json");
-                 headers.put("Connection", "keep-alive");
-                return headers;
-            }
-        };
-        Volley.newRequestQueue(this).add(istek);
-
+        });
 
     }
 }

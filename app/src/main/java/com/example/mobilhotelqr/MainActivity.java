@@ -16,7 +16,6 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.budiyev.android.codescanner.AutoFocusMode;
 import com.budiyev.android.codescanner.CodeScanner;
@@ -26,24 +25,14 @@ import com.budiyev.android.codescanner.ErrorCallback;
 import com.budiyev.android.codescanner.ScanMode;
 import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
-import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Response.ErrorMessage;
 import com.example.mobilhotelqr.PojoModels.Response.ResponseData;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.zxing.Result;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private CodeScannerView codeScannerView;
     private RetrofitProcess retrofitProcess;
+    SharedPreferences mPrefs ;
 
     //Timer için  gerekli
     timer t = new timer(5000,1000);;
@@ -69,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.button);
+        /**
+         *  Login olmuşsa navigation activitye yönleniyor activitye yinlendiriliyor
+         */
+        mPrefs = getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
+        String json = mPrefs.getString("User", "");
+        if( json != ""){
+
+            Intent intent = new Intent(MainActivity.this,NavigationActivity.class);
+            startActivity(intent);
+
+        }
+
+
        /* button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,6 +199,17 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),message.getMessage(),Snackbar.LENGTH_SHORT);
                     snackbar.getView().setBackgroundColor(Color.GRAY);
                     snackbar.show();
+                }
+                if(response.body().getMessage().equals("success")){
+
+                    Intent intent = new Intent(MainActivity.this,PrivateKeyActivity.class);
+                    try {
+                        intent.putExtra("qr_key",qrKey.getString("qr_key"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(intent);
+
                 }
             }
 
