@@ -227,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     startActivity(intent);
 
+
+
                 }else {
                     //Todo buraya  herhangi  birşey yapmaya gerek yok
                 }
