@@ -63,7 +63,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         /**
          * Logout bu navigation activity  çalıştığı  sürece kontrol ediliyor.
          */
+        stopService(new Intent(NavigationActivity.this, LogoutService.class));
         startService(new Intent(NavigationActivity.this, LogoutService.class));
+
 
 
         try {

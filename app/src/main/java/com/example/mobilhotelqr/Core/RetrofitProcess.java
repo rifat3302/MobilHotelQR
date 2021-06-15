@@ -1,6 +1,7 @@
 package com.example.mobilhotelqr.Core;
 
 import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
+import com.example.mobilhotelqr.PojoModels.LogoutControl;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.Datum;
@@ -38,4 +39,8 @@ public interface RetrofitProcess {
     @POST("MHlogin")
     @FormUrlEncoded
     Call<LoginUserAfter> loginAfterPrivateKey(@Field("qr_key") String qr_key, @Field("private_key") String private_key);
+
+    @POST("logoutControlServiceForMobile")
+    @FormUrlEncoded
+    Call<LogoutControl> logoutControlServiceForMobile(@Field("user_id")  int user_id);
 }

@@ -27,5 +27,9 @@ public class ApiUtils {
     public static RetrofitProcess loginAfterPrivateKey(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+
+    public static RetrofitProcess logoutControlServiceForMobile(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 

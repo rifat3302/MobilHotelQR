@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -151,6 +152,16 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0){
+            finishAffinity();
+            finish();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
     private void setupPermission(){
         int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
 
@@ -183,6 +194,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
     public void controlQrKey(JSONObject qrKey) throws JSONException {
 
         retrofitProcess = ApiUtils.qrControl();
@@ -200,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     snackbar.getView().setBackgroundColor(Color.GRAY);
                     snackbar.show();
                 }
-                if(response.body().getMessage().equals("success")){
+                else if(response.body().getMessage().equals("success")){
 
                     Intent intent = new Intent(MainActivity.this,PrivateKeyActivity.class);
                     try {
@@ -210,6 +227,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     startActivity(intent);
 
+                }else {
+                    //Todo buraya  herhangi  birşey yapmaya gerek yok
                 }
             }
 
