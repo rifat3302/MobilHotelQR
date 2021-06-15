@@ -173,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeRequest(){
 
+
+
         String[] arr ={Manifest.permission.CAMERA};
         ActivityCompat.requestPermissions(this,arr,CAMERA_REQUEST_CODE);
     }
