@@ -226,9 +226,6 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     startActivity(intent);
-
-
-
                 }else {
                     //Todo buraya  herhangi  birşey yapmaya gerek yok
                 }
@@ -240,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        //frnn
     }
 
     class timer extends CountDownTimer{
