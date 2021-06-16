@@ -21,8 +21,14 @@
         <menu>
             <item
                 android:id="@+id/nav_item_call_taxi"
-                android:icon="@drawable/ic_baseline_add_alert_24"
-                android:title="Call Taxi" />
+                android:title="Call Taxi"
+                android:icon="@drawable/ic_baseline_phone_enabled_24"
+               />
+
+            <item android:id="@+id/nav_item_places"
+                android:title="Places"
+                android:icon="@drawable/places"
+                />
             <item
                 android:id="@+id/nav_item_order_history"
                 android:icon="@drawable/eating"

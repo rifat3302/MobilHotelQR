@@ -28,6 +28,7 @@ import com.example.mobilhotelqr.Fragment.FragmentHospital;
 import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
 import com.example.mobilhotelqr.Fragment.FragmentOrderHistory;
 import com.example.mobilhotelqr.Fragment.FragmentPharmacy;
+import com.example.mobilhotelqr.Fragment.FragmentPlaces;
 import com.example.mobilhotelqr.Fragment.FragmentTaxi;
 import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
@@ -208,6 +209,14 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             fragment = new FragmentPharmacy();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(item.getItemId() == R.id.nav_item_places){
+           /* fragment = new FragmentPlaces();
+            setContentView(R.layout.fragment_tutucu_for_places);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu_2,fragment).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);*/
+           Intent intent = new Intent(NavigationActivity.this,PlacesQrActivity.class);
+           startActivity(intent);
         }
 
         return false;

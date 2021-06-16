@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4A494C">
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/codeScannerView2"
+        android:layout_width="306dp"
+        android:layout_height="232dp"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@android:color/white"
+        app:flashButtonVisible="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:maskColor="#4A494C"
+        tools:ignore="MissingConstraints">
+
+    </com.budiyev.android.codescanner.CodeScannerView>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="186dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="47dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mainicon" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="279dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="29dp"
+        android:gravity="center"
+        android:text="Please scan the qr code in place"
+        android:textColor="#FF5722"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codeScannerView2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
