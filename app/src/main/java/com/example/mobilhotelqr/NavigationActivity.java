@@ -23,8 +23,11 @@ import android.widget.Toast;
 
 import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.Fragment.FragmentBank;
+import com.example.mobilhotelqr.Fragment.FragmentHospital;
 import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
 import com.example.mobilhotelqr.Fragment.FragmentOrderHistory;
+import com.example.mobilhotelqr.Fragment.FragmentPharmacy;
 import com.example.mobilhotelqr.Fragment.FragmentTaxi;
 import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
@@ -152,19 +155,19 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         //Nav Menu
-        if(item.getItemId() == R.id.nav_item_birinci){
+        if(item.getItemId() == R.id.nav_item_user_info){
             fragment = new FragmentBirinci();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
 
-        if(item.getItemId() == R.id.nav_item_ikinci){
+        if(item.getItemId() == R.id.nav_item_room_info){
             fragment = new FragmentIkinci();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
 
-        if(item.getItemId() == R.id.nav_item_ucuncu){
+        if(item.getItemId() == R.id.nav_item_call_taxi){
             fragment = new FragmentTaxi();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -188,6 +191,21 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         }
         if(item.getItemId() == R.id.tripadvisor){
             fragment = new fragment_third();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(item.getItemId() == R.id.nav_item_bank){
+            fragment = new FragmentBank();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(item.getItemId() == R.id.nav_item_hospital){
+            fragment = new FragmentHospital();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        if(item.getItemId() == R.id.nav_item_ph){
+            fragment = new FragmentPharmacy();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }

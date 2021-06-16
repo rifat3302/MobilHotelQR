@@ -4,9 +4,11 @@
     <item android:title="User">
 
         <menu>
-            <item android:id="@+id/nav_item_birinci"
+            <item
+                android:id="@+id/nav_item_user_info"
                 android:title="User Info" />
-            <item android:id="@+id/nav_item_ikinci"
+            <item
+                android:id="@+id/nav_item_room_info"
                 android:title="Room Info" />
 
 
@@ -17,14 +19,32 @@
     <item android:title="Help">
 
         <menu>
-            <item android:id="@+id/nav_item_ucuncu"
-                android:title="Call Taxi"
+            <item
+                android:id="@+id/nav_item_call_taxi"
                 android:icon="@drawable/ic_baseline_add_alert_24"
-                />
-            <item android:id="@+id/nav_item_order_history"
-                android:title="Order History"
+                android:title="Call Taxi" />
+            <item
+                android:id="@+id/nav_item_order_history"
                 android:icon="@drawable/eating"
-                />
+                android:title="Order History" />
+        </menu>
+
+    </item>
+    <item android:title="Other">
+
+        <menu>
+            <item
+                android:id="@+id/nav_item_hospital"
+                android:icon="@drawable/hospital"
+                android:title="Hospitals" />
+            <item
+                android:id="@+id/nav_item_bank"
+                android:icon="@drawable/bank"
+                android:title="Banks" />
+            <item
+                android:id="@+id/nav_item_ph"
+                android:icon="@drawable/pharmacy"
+                android:title="Pharmacy" />
         </menu>
 
     </item>
