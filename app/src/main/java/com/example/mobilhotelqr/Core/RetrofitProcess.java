@@ -7,6 +7,7 @@ import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.Datum;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.OrderHistory;
 import com.example.mobilhotelqr.PojoModels.Response.ResponseData;
+import com.example.mobilhotelqr.PojoModels.Taxi.TaxiResult;
 
 import java.util.HashMap;
 
@@ -43,4 +44,7 @@ public interface RetrofitProcess {
     @POST("logoutControlServiceForMobile")
     @FormUrlEncoded
     Call<LogoutControl> logoutControlServiceForMobile(@Field("user_id")  int user_id);
+
+    @GET("getTaxi")
+    Call<TaxiResult> getTaxi();
 }

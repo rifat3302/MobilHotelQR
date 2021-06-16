@@ -50,6 +50,7 @@ public class FragmentOrderHistory extends Fragment {
 
     public void getOrderHistory(View mViews) throws IOException {
         retrofitProcess = ApiUtils.getOrderHistory();
+        //todo burası shared preferencestan okunacak  önemli
         retrofitProcess.getOrderHistory(123,123).enqueue(new Callback<OrderHistory>() {
             @Override
             public void onResponse(Call<OrderHistory> call, Response<OrderHistory> response) {

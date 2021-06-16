@@ -25,6 +25,7 @@ import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
 import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
 import com.example.mobilhotelqr.Fragment.FragmentOrderHistory;
+import com.example.mobilhotelqr.Fragment.FragmentTaxi;
 import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
@@ -63,8 +64,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         /**
          * Logout bu navigation activity  çalıştığı  sürece kontrol ediliyor.
          */
+        //Todo burayı açmayı unutma
+        /*
         stopService(new Intent(NavigationActivity.this, LogoutService.class));
-        startService(new Intent(NavigationActivity.this, LogoutService.class));
+        startService(new Intent(NavigationActivity.this, LogoutService.class));*/
+
 
 
 
@@ -135,7 +139,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
 
         View baslik = navigationView.inflateHeaderView(R.layout.navigation_baslik);
         kisiAdinNavigation = baslik.findViewById(R.id.textView11);
-        kisiAdinNavigation.setText(user.getData().getUser().getName()+" "+user.getData().getUser().getSurname());
+        //Todo burayı açmayı unutma
+        //kisiAdinNavigation.setText(user.getData().getUser().getName()+" "+user.getData().getUser().getSurname());
+        kisiAdinNavigation.setText("Burak  Kaya");
 
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -159,7 +165,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         }
 
         if(item.getItemId() == R.id.nav_item_ucuncu){
-            fragment = new FragmentUcuncu();
+            fragment = new FragmentTaxi();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }

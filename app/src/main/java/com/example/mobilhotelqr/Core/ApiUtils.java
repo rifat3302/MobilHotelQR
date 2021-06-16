@@ -31,5 +31,8 @@ public class ApiUtils {
     public static RetrofitProcess logoutControlServiceForMobile(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+    public static RetrofitProcess getTaxi(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 

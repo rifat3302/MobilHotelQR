@@ -73,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-       /* button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,NavigationActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
         codeScannerView = findViewById(R.id.scanner_view);
         setupPermission();
         codeScanner();
@@ -233,11 +233,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
-                int b =0;
+                //Todo Hatalar  henüz yakalanmadı
             }
         });
-
-        //frnn
     }
 
     class timer extends CountDownTimer{
