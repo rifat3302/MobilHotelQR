@@ -6,6 +6,7 @@ import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.Datum;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.OrderHistory;
+import com.example.mobilhotelqr.PojoModels.QrPlacesControl;
 import com.example.mobilhotelqr.PojoModels.Response.ResponseData;
 import com.example.mobilhotelqr.PojoModels.Taxi.TaxiResult;
 
@@ -47,4 +48,10 @@ public interface RetrofitProcess {
 
     @GET("getTaxi")
     Call<TaxiResult> getTaxi();
+
+    @POST("controlPlacesQrKey")
+    @FormUrlEncoded
+    Call<QrPlacesControl> qrPlacesControl(@Field("user_id")  int user_id, @Field("qr_key")  String qr_key);
+
+
 }
