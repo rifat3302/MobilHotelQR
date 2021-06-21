@@ -14,8 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.example.mobilhotelqr.Core.TripAdvisorAdapter;
 import com.example.mobilhotelqr.PojoModels.GooglePlaces.GooglePlaces;
+import com.example.mobilhotelqr.PojoModels.GooglePlaces.Place;
 import com.example.mobilhotelqr.R;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentTripAdvisor extends Fragment {
 
@@ -39,10 +43,18 @@ public class FragmentTripAdvisor extends Fragment {
 
         Gson gson = new Gson();
         GooglePlaces tripAdvisor = gson.fromJson(json,GooglePlaces.class);
+        List<Place> tripAdvisorNew = new ArrayList();
+        for (Place item :  tripAdvisor.getPlaces()) {
+
+           if(item.getType()==2){
+               tripAdvisorNew.add(item);
+           }
+
+        }
         rv_tripadvisor = mViews.findViewById(R.id.rv_tripadvisor);
         rv_tripadvisor.setHasFixedSize(true);
         rv_tripadvisor.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-        tripAdvisorAdapter = new TripAdvisorAdapter(tripAdvisor,getActivity().getBaseContext());
+        tripAdvisorAdapter = new TripAdvisorAdapter(tripAdvisorNew,getActivity().getBaseContext(),getFragmentManager());
         rv_tripadvisor.setAdapter(tripAdvisorAdapter);
     }
 }

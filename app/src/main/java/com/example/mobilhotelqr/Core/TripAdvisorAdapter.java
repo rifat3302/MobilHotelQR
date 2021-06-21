@@ -4,23 +4,33 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.mobilhotelqr.Fragment.FragmentTripAdvisorDetay;
 
-import com.example.mobilhotelqr.PojoModels.GooglePlaces.GooglePlaces;
+import com.example.mobilhotelqr.PojoModels.GooglePlaces.Place;
 import com.example.mobilhotelqr.R;
+import com.squareup.picasso.Picasso;
+import java.util.List;
 
 public class TripAdvisorAdapter extends RecyclerView.Adapter<TripAdvisorAdapter.CardViewTasatimNesneleriniTutucu> {
 
     private Context mContext;
-    private GooglePlaces googlePlaces;
+    private List<Place> googlePlaces;
+    private FragmentManager fragmentManager;
+    private Fragment fragment;
 
-    public TripAdvisorAdapter( GooglePlaces googlePlaces, Context mContext) {
+    public TripAdvisorAdapter(List<Place> googlePlaces, Context mContext, FragmentManager fm) {
         this.mContext = mContext;
         this.googlePlaces = googlePlaces;
+        this.fragmentManager = fm;
+
     }
 
     @NonNull
@@ -33,12 +43,17 @@ public class TripAdvisorAdapter extends RecyclerView.Adapter<TripAdvisorAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CardViewTasatimNesneleriniTutucu holder, int position) {
-        if(googlePlaces.getPlaces().get(position).getType()==2){
-            holder.textView.setText(googlePlaces.getPlaces().get(position).getNameHead().toString());
+        if(googlePlaces.get(position).getType()==2){
+
+            Picasso.get().load(googlePlaces.get(position).getData().get(0).getImageUrl()).into(holder.imageView);
+            holder.textView.setText(googlePlaces.get(position).getNameHead().toString());
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Todo burada yeni fragmente yönlenecek
+                    Place  place = googlePlaces.get(position);
+                    fragment = new FragmentTripAdvisorDetay(place);
+                    fragmentManager.beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+
                 }
             });
         }
@@ -47,18 +62,20 @@ public class TripAdvisorAdapter extends RecyclerView.Adapter<TripAdvisorAdapter.
 
     @Override
     public int getItemCount() {
-        return googlePlaces.getPlaces().size();
+        return googlePlaces.size();
     }
 
     public class CardViewTasatimNesneleriniTutucu extends RecyclerView.ViewHolder {
         public LinearLayout button;
         public TextView textView;
+        public ImageView imageView;
         //buraya card tasarımm üzerindeki objeler tanımlannır.
 
         public CardViewTasatimNesneleriniTutucu(@NonNull View itemView) {
             super(itemView);
             button = itemView.findViewById(R.id.tripadvisor_lineer);
             textView = itemView.findViewById(R.id.tripadvisor_text);
+            imageView = itemView.findViewById(R.id.imageView14);
             //buraya card tasarımm üzerindeki objeler yerleştirilir.
 
         }
