@@ -23,6 +23,7 @@ import com.example.mobilhotelqr.Core.LoadingDialog;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
 import com.example.mobilhotelqr.DashboardFragment;
 import com.example.mobilhotelqr.Models.Order;
+import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.Response.ResponseData;
 import com.example.mobilhotelqr.R;
 import com.google.gson.Gson;
@@ -121,9 +122,13 @@ public class FragmentLastOrder  extends Fragment {
                     }
                     try {
                         //TODO burası login olduktan sonra dinamik set edilecek
+                        Gson gsonn = new Gson();
+                        mPrefs = getActivity().getSharedPreferences("MobilHotelQR", Context.MODE_PRIVATE);
+                        String jsonn = mPrefs.getString("User", "");
+                        LoginUserAfter user = gson.fromJson(json,LoginUserAfter.class);
                         JSONObject item = new JSONObject();
-                        item.put("user_id",123);
-                        item.put("room_number",123);
+                        item.put("user_id", user.getData().getUser().getId());
+                        item.put("room_number",user.getData().getUser().getRoomNumber());
                         item.put("total",totalPrice);
                         item.put("state",1);
                         jsonOrder.put("order_data",array);

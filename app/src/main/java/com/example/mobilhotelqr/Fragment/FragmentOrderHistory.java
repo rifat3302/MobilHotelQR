@@ -1,6 +1,7 @@
 package com.example.mobilhotelqr.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,8 +17,10 @@ import com.example.mobilhotelqr.Core.ApiUtils;
 
 import com.example.mobilhotelqr.Core.OrderHistoryAdapter;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.OrderHistory;
 import com.example.mobilhotelqr.R;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -28,7 +31,7 @@ import retrofit2.Response;
 public class FragmentOrderHistory extends Fragment {
 
     View mView;
-
+    SharedPreferences mPrefs ;
     private RecyclerView rvLastOrder ;
     private OrderHistoryAdapter lastOrderAdapter;
 
@@ -51,10 +54,13 @@ public class FragmentOrderHistory extends Fragment {
     public void getOrderHistory(View mViews) throws IOException {
         retrofitProcess = ApiUtils.getOrderHistory();
         //todo burası shared preferencestan okunacak  önemli
-        retrofitProcess.getOrderHistory(123,123).enqueue(new Callback<OrderHistory>() {
+        Gson gson = new Gson();
+        mPrefs = getActivity().getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
+        String json = mPrefs.getString("User", "");
+        LoginUserAfter user = gson.fromJson(json,LoginUserAfter.class);
+        retrofitProcess.getOrderHistory(user.getData().getUser().getId(),user.getData().getUser().getRoomNumber()).enqueue(new Callback<OrderHistory>() {
             @Override
             public void onResponse(Call<OrderHistory> call, Response<OrderHistory> response) {
-
 
                 if(response.body()==null){
                     Fragment fragment = new FragmentFetchingDataError();
@@ -72,8 +78,6 @@ public class FragmentOrderHistory extends Fragment {
                     lastOrderAdapter = new OrderHistoryAdapter(getActivity().getBaseContext(),response,mViews,getActivity().getSupportFragmentManager());
                     rvLastOrder.setAdapter(lastOrderAdapter);
                 }
-
-
 
             }
 
