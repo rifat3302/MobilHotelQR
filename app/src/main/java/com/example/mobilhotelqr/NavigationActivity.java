@@ -30,9 +30,12 @@ import com.example.mobilhotelqr.Fragment.FragmentOrderHistory;
 import com.example.mobilhotelqr.Fragment.FragmentPharmacy;
 import com.example.mobilhotelqr.Fragment.FragmentPlaces;
 import com.example.mobilhotelqr.Fragment.FragmentTaxi;
+import com.example.mobilhotelqr.Fragment.FragmentTripAdvisor;
+import com.example.mobilhotelqr.PojoModels.GooglePlaces.GooglePlaces;
 import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.Menu.MenuData;
 import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
+import com.example.mobilhotelqr.PojoModels.Taxi.TaxiResult;
 import com.example.mobilhotelqr.Services.LogoutService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -43,6 +46,7 @@ import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -73,12 +77,13 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         stopService(new Intent(NavigationActivity.this, LogoutService.class));
         startService(new Intent(NavigationActivity.this, LogoutService.class));*/
 
-
+       // mPrefs.edit().remove("GooglePlaces").commit();
 
 
         try {
             getAllMenu();
             getAllOccupancy();
+            setGooglePlaces();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -191,7 +196,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         if(item.getItemId() == R.id.tripadvisor){
-            fragment = new fragment_third();
+            fragment = new FragmentTripAdvisor();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
@@ -211,10 +216,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         if(item.getItemId() == R.id.nav_item_places){
-           /* fragment = new FragmentPlaces();
-            setContentView(R.layout.fragment_tutucu_for_places);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu_2,fragment).commit();
-            drawerLayout.closeDrawer(GravityCompat.START);*/
            Intent intent = new Intent(NavigationActivity.this,PlacesQrActivity.class);
            startActivity(intent);
         }
@@ -283,6 +284,33 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
                 Toast.makeText(mContext,"The Occupancy could not be pulled",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void setGooglePlaces(){
+
+        mPrefs = getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
+        String json = mPrefs.getString("GooglePlaces", "");
+        if( json.equals("") || json.equals("[]") || json == null || json.equals("{}")){
+            retrofitProcess = ApiUtils.getGooglePlaces();
+            retrofitProcess.getGooglePlaces().enqueue(new Callback<GooglePlaces>() {
+                @Override
+                public void onResponse(Call<GooglePlaces> call, Response<GooglePlaces> response) {
+
+                    GooglePlaces placesResult = response.body();
+                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(placesResult);
+                    prefsEditor.putString("GooglePlaces", json);
+                    prefsEditor.commit();
+                }
+
+                @Override
+                public void onFailure(Call<GooglePlaces> call, Throwable t) {
+
+                }
+            });
+        }
+
     }
 
 

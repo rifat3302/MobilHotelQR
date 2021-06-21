@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobilhotelqr.PojoModels.Taxi.TaxiResult;
 import com.example.mobilhotelqr.R;
 
-import retrofit2.Response;
 
 public class TaxiAdapter extends RecyclerView.Adapter<TaxiAdapter.CardViewTasatimNesneleriniTutucu> {
 

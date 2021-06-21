@@ -20,4 +20,6 @@ public class FragmentPlaces extends Fragment {
         mView = inflater.inflate(R.layout.places_qr_activity,container,false);
         return  mView;
     }
+
+
 }

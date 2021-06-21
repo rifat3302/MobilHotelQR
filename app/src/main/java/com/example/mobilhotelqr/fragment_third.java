@@ -15,7 +15,7 @@ public class fragment_third extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_third_layout,container,false);
+        return inflater.inflate(R.layout.fragment_tripadvisor,container,false);
 
 
     }

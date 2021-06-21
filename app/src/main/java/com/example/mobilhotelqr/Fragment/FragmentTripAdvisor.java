@@ -12,37 +12,37 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import com.example.mobilhotelqr.Core.HospitalAdapter;
-import com.example.mobilhotelqr.Core.PharmAdapter;
+import com.example.mobilhotelqr.Core.TripAdvisorAdapter;
 import com.example.mobilhotelqr.PojoModels.GooglePlaces.GooglePlaces;
 import com.example.mobilhotelqr.R;
 import com.google.gson.Gson;
 
-public class FragmentHospital extends Fragment {
-    private View mViev;
+public class FragmentTripAdvisor extends Fragment {
 
-    private RecyclerView rvHospital ;
-    private HospitalAdapter hospitalAdapter;
+    View mView;
+    private RecyclerView rv_tripadvisor ;
+    private TripAdvisorAdapter tripAdvisorAdapter;
     SharedPreferences mPrefs ;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mViev = inflater.inflate(R.layout.fragment_hospital,container,false);
-        this.getHospital(mViev);
-        return mViev;
+
+        mView = inflater.inflate(R.layout.fragment_tripadvisor,container,false);
+        this.getGooglePlaces(mView);
+        return  mView;
     }
 
-    public void getHospital(View mViews){
+    public void getGooglePlaces(View mViews){
 
         mPrefs = getActivity().getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
         String json = mPrefs.getString("GooglePlaces", "");
+
         Gson gson = new Gson();
-        GooglePlaces hospital = gson.fromJson(json,GooglePlaces.class);
-        rvHospital = mViews.findViewById(R.id.rv_hospital);
-        rvHospital.setHasFixedSize(true);
-        rvHospital.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-        hospitalAdapter = new HospitalAdapter(hospital.getPlaces().get(0),getActivity().getBaseContext());
-        rvHospital.setAdapter(hospitalAdapter);
+        GooglePlaces tripAdvisor = gson.fromJson(json,GooglePlaces.class);
+        rv_tripadvisor = mViews.findViewById(R.id.rv_tripadvisor);
+        rv_tripadvisor.setHasFixedSize(true);
+        rv_tripadvisor.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+        tripAdvisorAdapter = new TripAdvisorAdapter(tripAdvisor,getActivity().getBaseContext());
+        rv_tripadvisor.setAdapter(tripAdvisorAdapter);
     }
 }
