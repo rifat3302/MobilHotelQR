@@ -151,7 +151,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         kisiAdinNavigation = baslik.findViewById(R.id.textView11);
         //Todo burayı açmayı unutma
         //kisiAdinNavigation.setText(user.getData().getUser().getName()+" "+user.getData().getUser().getSurname());
-        kisiAdinNavigation.setText("Burak  Kaya");
+        kisiAdinNavigation.setText("Username_UserSurname");
 
 
         navigationView.setNavigationItemSelectedListener(this);
