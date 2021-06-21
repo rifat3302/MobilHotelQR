@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="User">
 
@@ -33,6 +34,10 @@
                 android:id="@+id/nav_item_order_history"
                 android:icon="@drawable/eating"
                 android:title="Order History" />
+            <item
+                android:id="@+id/nav_item_alarm"
+                android:icon="@drawable/alarm"
+                android:title="Set On Alarm" />
         </menu>
 
     </item>

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.Fragment.FragmentAlarm;
 import com.example.mobilhotelqr.Fragment.FragmentBank;
 import com.example.mobilhotelqr.Fragment.FragmentHospital;
 import com.example.mobilhotelqr.Fragment.FragmentLastOrder;
@@ -218,6 +219,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         if(item.getItemId() == R.id.nav_item_places){
            Intent intent = new Intent(NavigationActivity.this,PlacesQrActivity.class);
            startActivity(intent);
+        }
+        if(item.getItemId() == R.id.nav_item_alarm){
+            fragment = new FragmentAlarm(NavigationActivity.this);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
 
         return false;
