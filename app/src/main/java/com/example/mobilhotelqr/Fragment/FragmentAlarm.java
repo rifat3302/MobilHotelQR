@@ -3,6 +3,7 @@ package com.example.mobilhotelqr.Fragment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -108,15 +109,33 @@ public class FragmentAlarm extends Fragment {
                                         date.setText(year + "/"+ finalMonths +"/" +finalDays +" "+hours+':'+min);
                                     }
                                 },hour,minute,true);
-                                tpd.setButton(TimePickerDialog.BUTTON_POSITIVE, "Seç", tpd);
-                                tpd.setButton(TimePickerDialog.BUTTON_NEGATIVE, "İptal", tpd);
+                                tpd.setButton(TimePickerDialog.BUTTON_POSITIVE, "Ok", tpd);
+                                tpd.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (i == DialogInterface.BUTTON_NEGATIVE) {
+                                            Fragment fragment = new DashboardFragment();
+                                            getFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+                                        }
+                                    }
+                                });
+                                tpd.setCancelable(false);
                                 tpd.show();
                             }
                         }, year, month, dayOfMonth);
 
                 dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Seç", dpd);
-                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "İptal", dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE, "Ok", dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == DialogInterface.BUTTON_NEGATIVE) {
+                            Fragment fragment = new DashboardFragment();
+                            getFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+                        }
+                    }
+                });
+                dpd.setCancelable(false);
                 dpd.show();
 
 
