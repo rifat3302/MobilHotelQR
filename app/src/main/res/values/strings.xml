@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Otp-Pin-View</string>
+    <string name="app_name">Mobile Hotel-View</string>
     <string name="verification_code_subtext">Please type the verification code sent to +xxxxxxxxxx</string>
     <string name="verification_code">Verification Code</string>
     <string name="validate">Validate</string>
