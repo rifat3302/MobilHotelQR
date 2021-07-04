@@ -3,6 +3,7 @@ package com.example.mobilhotelqr.Fragment;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,9 +24,18 @@ import androidx.fragment.app.Fragment;
 
 import java.time.ZonedDateTime;
 import java.util.Calendar;
+
+import com.example.mobilhotelqr.Core.ApiUtils;
+import com.example.mobilhotelqr.Core.RetrofitProcess;
+import com.example.mobilhotelqr.DashboardFragment;
+import com.example.mobilhotelqr.PojoModels.AlarmResponse;
 import com.example.mobilhotelqr.R;
 
 import org.w3c.dom.Text;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentAlarm extends Fragment {
 
@@ -33,6 +43,8 @@ public class FragmentAlarm extends Fragment {
     private Button select_date;
     Context context ;
     private TextView date;
+    private RetrofitProcess retrofitProcess;
+
     public FragmentAlarm( Context context) {
         this.context = context;
     }
@@ -93,7 +105,7 @@ public class FragmentAlarm extends Fragment {
                                         else
                                             min=String.valueOf(minute);
 
-                                        date.setText(finalDays + "/"+ finalMonths +"/" + year+" - "+hours+':'+min);
+                                        date.setText(year + "/"+ finalMonths +"/" +finalDays +" "+hours+':'+min);
                                     }
                                 },hour,minute,true);
                                 tpd.setButton(TimePickerDialog.BUTTON_POSITIVE, "Seç", tpd);
@@ -113,8 +125,23 @@ public class FragmentAlarm extends Fragment {
            @Override
          public void onClick(View view) {
 
-            Toast.makeText(getContext(),"Alarm Has Been Setting",Toast.LENGTH_SHORT).show();
+
                 // buraya servis komutları yazılacak. Butona tıklayınca resepsiyona gönderilecek kodlar burada olacak.
+               String deneme = date.getText().toString();
+               retrofitProcess = ApiUtils.setAlarm();
+               retrofitProcess.setAlarm(deneme,21).enqueue(new Callback<AlarmResponse>() {
+                   @Override
+                   public void onResponse(Call<AlarmResponse> call, Response<AlarmResponse> response) {
+                       Toast.makeText(getContext(),"Alarm Has Been Setting",Toast.LENGTH_SHORT).show();
+                       Fragment fragment = new DashboardFragment();
+                       getFragmentManager().beginTransaction().replace(R.id.fragment_tutucu,fragment).commit();
+                   }
+
+                   @Override
+                   public void onFailure(Call<AlarmResponse> call, Throwable t) {
+                        int b = 0;
+                   }
+               });
 
           }
 

@@ -1,5 +1,6 @@
 package com.example.mobilhotelqr.Core;
 
+import com.example.mobilhotelqr.PojoModels.AlarmResponse;
 import com.example.mobilhotelqr.PojoModels.GooglePlaces.GooglePlaces;
 import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.PojoModels.LogoutControl;
@@ -53,6 +54,10 @@ public interface RetrofitProcess {
 
     @GET("getPlaces")
     Call<GooglePlaces> getGooglePlaces();
+
+    @POST("setAlarm")
+    @FormUrlEncoded
+    Call<AlarmResponse> setAlarm(@Field("date") String wake_up_date,@Field("room_number") int room_number);
 
 
 }

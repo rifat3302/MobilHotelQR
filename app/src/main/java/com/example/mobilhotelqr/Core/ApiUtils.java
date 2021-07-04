@@ -40,5 +40,8 @@ public class ApiUtils {
     public static RetrofitProcess getGooglePlaces(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+    public static RetrofitProcess setAlarm(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 
