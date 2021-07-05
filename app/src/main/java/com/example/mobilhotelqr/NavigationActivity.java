@@ -72,9 +72,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
          * Logout bu navigation activity  çalıştığı  sürece kontrol ediliyor.
          */
         //Todo burayı açmayı unutma
-        /*
         stopService(new Intent(NavigationActivity.this, LogoutService.class));
-        startService(new Intent(NavigationActivity.this, LogoutService.class));*/
+        startService(new Intent(NavigationActivity.this, LogoutService.class));
 
        // mPrefs.edit().remove("GooglePlaces").commit();
 
@@ -148,8 +147,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         View baslik = navigationView.inflateHeaderView(R.layout.navigation_baslik);
         kisiAdinNavigation = baslik.findViewById(R.id.textView11);
         //Todo burayı açmayı unutma
-        //kisiAdinNavigation.setText(user.getData().getUser().getName()+" "+user.getData().getUser().getSurname());
-        kisiAdinNavigation.setText("Username_UserSurname");
+        kisiAdinNavigation.setText(user.getData().getUser().getName()+" "+user.getData().getUser().getSurname());
+        //kisiAdinNavigation.setText("Username_UserSurname");
 
 
         navigationView.setNavigationItemSelectedListener(this);

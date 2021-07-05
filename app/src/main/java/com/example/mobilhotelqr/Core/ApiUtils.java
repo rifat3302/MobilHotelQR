@@ -43,5 +43,11 @@ public class ApiUtils {
     public static RetrofitProcess setAlarm(){
         return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
     }
+    public static RetrofitProcess getUserInfo(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
+    public static RetrofitProcess getRoomInfo(){
+        return  RetrofitClient.getClient(BASE_URL).create(RetrofitProcess.class);
+    }
 }
 

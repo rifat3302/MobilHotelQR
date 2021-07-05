@@ -123,9 +123,9 @@ public class FragmentLastOrder  extends Fragment {
                     try {
                         //TODO burası login olduktan sonra dinamik set edilecek
                         Gson gsonn = new Gson();
-                        mPrefs = getActivity().getSharedPreferences("MobilHotelQR", Context.MODE_PRIVATE);
+                        mPrefs = getActivity().getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
                         String jsonn = mPrefs.getString("User", "");
-                        LoginUserAfter user = gson.fromJson(json,LoginUserAfter.class);
+                        LoginUserAfter user = gson.fromJson(jsonn,LoginUserAfter.class);
                         JSONObject item = new JSONObject();
                         item.put("user_id", user.getData().getUser().getId());
                         item.put("room_number",user.getData().getUser().getRoomNumber());

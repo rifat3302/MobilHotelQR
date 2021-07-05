@@ -9,7 +9,9 @@ import com.example.mobilhotelqr.PojoModels.Occupancy.OccupancyData;
 import com.example.mobilhotelqr.PojoModels.OrderHistory.OrderHistory;
 import com.example.mobilhotelqr.PojoModels.QrPlacesControl;
 import com.example.mobilhotelqr.PojoModels.Response.ResponseData;
+import com.example.mobilhotelqr.PojoModels.RoomInfo.RoomInfoModel;
 import com.example.mobilhotelqr.PojoModels.Taxi.TaxiResult;
+import com.example.mobilhotelqr.PojoModels.UserInfo.UserInfoModel;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -59,5 +61,11 @@ public interface RetrofitProcess {
     @FormUrlEncoded
     Call<AlarmResponse> setAlarm(@Field("date") String wake_up_date,@Field("room_number") int room_number);
 
+    @POST("getUserInfo")
+    @FormUrlEncoded
+    Call<UserInfoModel> getUserInfo(@Field("user_id") int user_id);
+
+    @GET("getRoomInfo")
+    Call<RoomInfoModel> getRoomInfo();
 
 }
