@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         button = findViewById(R.id.button);
+       //  button = findViewById(R.id.button);
         /**
          *  Login olmuşsa navigation activitye yönleniyor activitye yinlendiriliyor
          */
@@ -73,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+       /* button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,NavigationActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         codeScannerView = findViewById(R.id.scanner_view);
         setupPermission();
         codeScanner();
