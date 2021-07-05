@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -30,7 +31,9 @@ import com.example.mobilhotelqr.Core.ApiUtils;
 import com.example.mobilhotelqr.Core.RetrofitProcess;
 import com.example.mobilhotelqr.DashboardFragment;
 import com.example.mobilhotelqr.PojoModels.AlarmResponse;
+import com.example.mobilhotelqr.PojoModels.LoginUserAfter.LoginUserAfter;
 import com.example.mobilhotelqr.R;
+import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
@@ -45,6 +48,7 @@ public class FragmentAlarm extends Fragment {
     Context context ;
     private TextView date;
     private RetrofitProcess retrofitProcess;
+    SharedPreferences mPrefs ;
 
     public FragmentAlarm( Context context) {
         this.context = context;
@@ -144,11 +148,16 @@ public class FragmentAlarm extends Fragment {
            @Override
          public void onClick(View view) {
 
+               Gson gson = new Gson();
+               mPrefs = getActivity().getSharedPreferences("MobilHotelInfo", Context.MODE_PRIVATE);
+               String jsonn = mPrefs.getString("User", "");
+               LoginUserAfter user = gson.fromJson(jsonn,LoginUserAfter.class);
 
-                // buraya servis komutları yazılacak. Butona tıklayınca resepsiyona gönderilecek kodlar burada olacak.
+
+               // buraya servis komutları yazılacak. Butona tıklayınca resepsiyona gönderilecek kodlar burada olacak.
                String deneme = date.getText().toString();
                retrofitProcess = ApiUtils.setAlarm();
-               retrofitProcess.setAlarm(deneme,21).enqueue(new Callback<AlarmResponse>() {
+               retrofitProcess.setAlarm(deneme,user.getData().getUser().getRoomNumber()).enqueue(new Callback<AlarmResponse>() {
                    @Override
                    public void onResponse(Call<AlarmResponse> call, Response<AlarmResponse> response) {
                        Toast.makeText(getContext(),"Alarm Has Been Setting",Toast.LENGTH_SHORT).show();
