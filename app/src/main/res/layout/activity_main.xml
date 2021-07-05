@@ -11,20 +11,24 @@
         android:id="@+id/scanner_view"
         android:layout_width="306dp"
         android:layout_height="232dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="20dp"
         app:autoFocusButtonColor="@android:color/white"
         app:autoFocusButtonVisible="true"
         app:flashButtonColor="@android:color/white"
         app:flashButtonVisible="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:maskColor="#4A494C"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="398dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="279dp"
         android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="4dp"
         android:text="Please scan the qr code in your room"
         android:textColor="#FF5722"
@@ -33,7 +37,8 @@
         app:layout_constraintBottom_toTopOf="@+id/scanner_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -63,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="20dp"
         android:text="MOBILE HOTEL"
         android:textColor="#FF5722"
         android:textSize="15dp"
